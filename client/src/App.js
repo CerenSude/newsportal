@@ -5,18 +5,25 @@ import MainContent from './components/MainContent';
 import RightPanel from './components/RightPanel';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 
 const App = () => {
     return (
-        <>
-            <Navbar />
+        <div>
+            <Navbar/>
+            <StickyAds/>
             <div className="main-layout">
-                <StickyAds />
-                <MainContent />
+                <Routes>
+                    {/* Home shows slider normally */}
+                    <Route path="/" element={<MainContent/>}/>
+
+                    {/* News detail page handled by MainContent too */}
+                    <Route path="/news/:id" element={<MainContent/>}/>
+                </Routes>
                 <RightPanel />
             </div>
-        </>
+        </div>
     );
 };
 
