@@ -10,20 +10,19 @@ import './App.css';
 
 const App = () => {
     return (
-        <div>
-            <Navbar/>
-            <StickyAds/>
-            <div className="main-layout">
-                <Routes>
-                    {/* Home shows slider normally */}
-                    <Route path="/" element={<MainContent/>}/>
-
-                    {/* News detail page handled by MainContent too */}
-                    <Route path="/news/:id" element={<MainContent/>}/>
-                </Routes>
-                <RightPanel />
+        <BrowserRouter>
+            <div>
+                <Navbar/>
+                <StickyAds/>
+                <div className="main-layout">
+                    <Routes>
+                        <Route path="/" element={<MainContent />} />
+                        <Route path="/news/:id" element={<MainContent />} />
+                    </Routes>
+                    <RightPanel />
+                </div>
             </div>
-        </div>
+        </BrowserRouter>
     );
 };
 
