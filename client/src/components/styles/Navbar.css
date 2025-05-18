@@ -21,7 +21,9 @@ header {
     padding: 0;
 }
 
+
 .nav-list li a {
+
     text-decoration: none;
     color: #222;
     font-weight: 600;
@@ -36,6 +38,7 @@ header {
 }
 
 .currency-bar {
+
     background-color: #fafafa;
     color: #444;
     font-size: 11px;
@@ -45,6 +48,7 @@ header {
     gap: 20px;
     font-weight: 600;
     letter-spacing: 0.03em;
+    flex-wrap: wrap;
 }
 
 .currency-bar span {
