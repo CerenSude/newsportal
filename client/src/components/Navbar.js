@@ -9,7 +9,7 @@ const Navbar = () => {
 
     useEffect(() => {
         setHistoryItems(getHistory());
-        fetch('/api/finance')
+        fetch('https://se3355-newsportal-backend.onrender.com/api/finance')
             .then((res) => res.json())
             .then((data) => setFinanceData(data))
             .catch(() => setFinanceData([]));

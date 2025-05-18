@@ -7,11 +7,11 @@ const RightPanel = () => {
     const [dailyNews, setDailyNews] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:3001/api/weather_forecast')
+        axios.get('https://se3355-newsportal-backend.onrender.com/api/weather_forecast')
             .then(res => setWeatherData(res.data))
             .catch(err => console.error('Weather error:', err));
 
-        axios.get('http://localhost:3001/api/daily-news')
+        axios.get('https://se3355-newsportal-backend.onrender.com/api/daily-news')
             .then(res => setDailyNews(res.data))
             .catch(err => console.error('News error:', err));
     }, []);

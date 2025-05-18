@@ -14,7 +14,7 @@ function MainContent() {
 
     useEffect(() => {
         if (id) {
-            axios.get(`/api/news/${id}`)
+            axios.get(`https://se3355-newsportal-backend.onrender.com/api/news/${id}`)
                 .then((res) => {
                     setSingleNews(res.data);
                     if (res.data?.title) {
@@ -24,7 +24,7 @@ function MainContent() {
                 })
                 .catch((err) => console.error('Failed to fetch news:', err));
         } else {
-            axios.get('/api/slider_news')
+            axios.get('https://se3355-newsportal-backend.onrender.com/api/slider_news')
                 .then((res) => setSliderNews(res.data))
                 .catch((err) => console.error('Failed to fetch slider news:', err));
         }
