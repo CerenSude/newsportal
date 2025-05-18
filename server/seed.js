@@ -84,8 +84,6 @@ db.serialize(() => {
     weatherinfo.forEach(item => weatherStmt.run(...item));
     weatherStmt.finalize();
     console.log('Database seeded successfully.');
-    console.log("Weather data:", weatherData);
-
 });
 
 db.close();

@@ -5,15 +5,21 @@
   padding: 20px;
 }
 
-/* Main content takes ~60% */
 .main-content {
   flex: 0 0 60%;
   max-width: 60%;
-  overflow: hidden; /* Hide partial next/prev slides */
+  overflow: visible;
+  min-height: 300px;
 }
 
-/* Right panel takes ~40% */
-.right-panel {
-  flex: 0 0 40%;
-  max-width: 40%;
+/* Main content left side */
+.main-content-wrapper > :first-child {
+  flex: 1 1 65%;
+  min-width: 300px;
+}
+
+/* Right panel (news + weather) right side */
+.main-content-wrapper > :last-child {
+  flex: 1 1 30%;
+  min-width: 250px;
 }

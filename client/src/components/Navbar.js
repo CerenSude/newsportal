@@ -1,27 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import './styles/Navbar.css';
+import { getHistory } from '../utils/history';
 
 const Navbar = () => {
     const [openDropdown, setOpenDropdown] = useState(null);
     const [financeData, setFinanceData] = useState(null);
+    const [historyItems, setHistoryItems] = useState([]);
 
     useEffect(() => {
+        setHistoryItems(getHistory());
         fetch('/api/finance')
-
-            .then((res) => {
-                console.log('Raw response:', res); // 👈 DEBUG
-                return res.json();
-            })
-            .then((data) => {
-                console.log('Fetched finance data:', data); // 👈 DEBUG
-                setFinanceData(data);
-            })
-            .catch((err) => {
-                console.error('Finance fetch error:', err);
-                setFinanceData([]);
-            });
+            .then((res) => res.json())
+            .then((data) => setFinanceData(data))
+            .catch(() => setFinanceData([]));
     }, []);
 
+    const toggleDropdown = (item) => {
+        setOpenDropdown(openDropdown === item ? null : item);
+
+        if (item === 'history') {
+            const data = getHistory();
+            console.log("History items loaded:", data);
+            setHistoryItems(data);
+
+        }
+    };
 
     const renderChange = (change) => {
         const isUp = parseFloat(change) >= 0;
@@ -33,19 +36,13 @@ const Navbar = () => {
         );
     };
 
-    const toggleDropdown = (item) => {
-        setOpenDropdown(openDropdown === item ? null : item);
-    };
-
     return (
         <header>
-            {/* Top menu */}
             <nav className="top-nav">
                 <ul className="nav-list">
                     <li><a href="#">Son Dakika</a></li>
                     <li><a href="#">Yazarlar</a></li>
 
-                    {/* Dropdown for Gündem */}
                     <li
                         className="has-dropdown"
                         onMouseEnter={() => toggleDropdown("gundem")}
@@ -65,7 +62,6 @@ const Navbar = () => {
                     <li><a href="#">Dünya</a></li>
                     <li><a href="#">Günün İçinden</a></li>
 
-                    {/* Dropdown for Spor */}
                     <li
                         className="has-dropdown"
                         onMouseEnter={() => toggleDropdown("spor")}
@@ -85,10 +81,28 @@ const Navbar = () => {
                     <li><a href="#">Magazin</a></li>
                     <li><a href="#">Finans</a></li>
                     <li><a href="#">Resmi İlanlar</a></li>
+
+                    <li
+                        className="has-dropdown"
+                        onMouseEnter={() => toggleDropdown("history")}
+                        onMouseLeave={() => toggleDropdown(null)}
+                    >
+                        <button>History ▾</button>
+                        {openDropdown === 'history' && (
+                            <ul className="dropdown-menu">
+                                {historyItems.length === 0 ? (
+                                    <li>No history found</li>
+                                ) : (
+                                    historyItems.map((item, idx) => (
+                                        <li key={idx}>{item}</li>
+                                    ))
+                                )}
+                            </ul>
+                        )}
+                    </li>
                 </ul>
             </nav>
 
-            {/* Currency and market info bar */}
             <div className="currency-bar">
                 {financeData === null ? (
                     <span>Loading...</span>

@@ -1,3 +1,4 @@
+
 /* === News Slide === */
 .news-item {
     padding: 10px;
@@ -15,6 +16,8 @@
 .slick-slider {
     position: relative;
     overflow: hidden;
+    min-height: 300px; /* or more, depending on your design */
+    display: block !important;
 }
 
 /* Arrows */
