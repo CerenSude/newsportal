@@ -6,9 +6,5 @@
     "react-router-dom": "^7.6.0",
     "react-slick": "^0.30.3",
     "slick-carousel": "^1.8.1"
-  },
-  "scripts": {
-    "start": "node index.js",
-    "postinstall": "npm rebuild sqlite3"
   }
 }
